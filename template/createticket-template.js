@@ -13,7 +13,7 @@ var loadCreateTicket = () => {
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <i class="material-icons prefix">contact_mail</i>
-                                            <input id="email" type="email" name="email" class="validate">
+                                            <input id="email" type="email" name="email" class="validate" required>
                                             <label for="email">Email</label>
                                         </div>
                                     </div>
@@ -44,10 +44,10 @@ var loadCreateTicket = () => {
                                             <i class="material-icons prefix">priority_high</i>
                                             <select name="priority">
                                                 <option value="" disabled selected>Priority</option>
-                                                <option value="2">Low</option>
-                                                <option value="3">Medium</option>
-                                                <option value="4">High</option>
-                                                <option value="5">Urgent</option>
+                                                <option value="1">Low</option>
+                                                <option value="2">Medium</option>
+                                                <option value="3">High</option>
+                                                <option value="4">Urgent</option>
                                             </select>
                                         </div>
                                     </div>
@@ -60,15 +60,46 @@ var loadCreateTicket = () => {
                                         </div>
                                     </div>
 
+                                    <div class="row right">
+                                        <button class="btn waves-effect waves-light" type="reset" name="reset">Reset
+                                            <i class="material-icons right">restore_page</i>
+                                        </button>
 
-                                    <button class="btn waves-effect waves-light right" type="submit" name="action">Create
-                                        <i class="material-icons right">send</i>
-                                    </button>
+                                        <button class="btn waves-effect waves-light" type="submit" name="submit">Create
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
 
                                 </form>
                             </div>
                         </div>
-                    </div>                    
+                    </div> 
+                    
+                    <!--<button data-target="ticket-info-error" class="btn modal-trigger">Modal</button>-->
+
+                    <!-- Modal Structure -->
+                    <div id="ticket-info-success" class="modal">
+                        <div class="modal-content">
+                            <h4><i class="material-icons medium green-text">check</i>Create ticket success</h4>
+                            <p>Success</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="modal-close waves-effect waves-green btn-flat">Create one more</button>
+                            <button class="modal-close waves-effect waves-green btn-flat">Ok</button>
+                        </div>
+                    </div>
+
+                    <div id="ticket-info-error" class="modal">
+                        <div class="modal-content">
+                            <h4><i class="material-icons medium red-text">error</i>
+                                      Create ticket error
+                            </h4>
+                            <p>Error</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="modal-close waves-effect waves-green btn-flat">Ok</a>
+                        </div>
+                    </div>
                 </div>`;
 
     return html;

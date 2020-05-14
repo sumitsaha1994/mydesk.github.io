@@ -55,6 +55,19 @@ var loadTickets = async () => {
     }, html);
 
     html += `</div>
+                <!-- MODAL -->
+                <div id="ticket-delete" class="modal">
+                    <div class="modal-content">
+                        <h4><i class="material-icons medium">delete</i>
+                                Delete ticket
+                        </h4>
+                        <p>Do you want to delete this ticket?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-delete-tkt" class="modal-close waves-effect waves-green btn-flat">Yes</a>
+                        <button class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                    </div>
+                </div>
         </div>`;
     return html;
 }

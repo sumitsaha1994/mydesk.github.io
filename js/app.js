@@ -5,11 +5,11 @@ var currentPage = '';
 //---------------Define routes-----------------
 //---------------------------------------------
 const router = [
-    { path: '/', name: '',  redirectTo: '/dashboard'},
-    { path: '/dashboard', name: 'loadDashboard'},
+    { path: '/', name: '', redirectTo: '/dashboard' },
+    { path: '/dashboard', name: 'loadDashboard' },
     { path: '/tickets', name: 'loadTickets' },
     { path: '/tickets/:ticketId', name: 'ticket-details' },
-    { path: '/createticket', name: 'loadCreateTicket'}
+    { path: '/createticket', name: 'loadCreateTicket' }
 ];
 
 
@@ -30,7 +30,7 @@ async function routeToLink(route, isPushState = true) {
     //get the template name from matching route
     let routerObj = router.filter(r => r.path == route)[0];
     let templateName = routerObj.name;
-    
+
     //retrieve the template html
     let templateHtml = await eval(templateName + '()');
 
@@ -46,7 +46,7 @@ async function routeToLink(route, isPushState = true) {
     if (isPushState) {
         window.history.pushState({}, route, window.location.origin + route);
     }
-    
+
 }
 
 //send GET request to api
@@ -63,12 +63,12 @@ async function asyncGetFetchRequest(resourceName, queryParams) {
     }
 
     await fetch(apiUrl + resourceName + (queryParams ? '?' + queryParams : ''), options)
-            .then(resp => resp.json())
-            .then(jsonResp => data = jsonResp)
-            .catch(function (error) {
-                return error;
-            });
-    
+        .then(resp => resp.json())
+        .then(jsonResp => data = jsonResp)
+        .catch(function (error) {
+            return error;
+        });
+
     return data;
 }
 
@@ -77,6 +77,8 @@ async function asyncGetFetchRequest(resourceName, queryParams) {
 async function asyncPostFetchRequest(resourceName, body) {
 
     let data;
+    let error = {};
+    let okFlag = true;
 
     let options = {
         method: "POST",
@@ -88,14 +90,19 @@ async function asyncPostFetchRequest(resourceName, body) {
         },
         body: body
     }
-    
+
     await fetch(apiUrl + resourceName, options)
-        .then(resp => resp.json())
-        .then(jsonResp => data = jsonResp)
-        .catch(function (error) {
-            return error;
+        .then((resp) => {
+            okFlag = resp.ok ? true : false;
+            return resp.json();
+        })
+        .then(jsonResp => {
+            okFlag ? data = jsonResp : error = jsonResp;
+        })
+        .catch(function (err) {
+            error = err;
         });
-    return data;
+    return { data: data, error: error };
 }
 
 //send PUT request to api
@@ -114,7 +121,7 @@ async function asyncPutFetchRequest(resourceName, body) {
         },
         body: body
     }
-    
+
     await fetch(apiUrl + resourceName, options)
         .then((resp) => {
             okFlag = resp.ok ? true : false;
@@ -126,7 +133,34 @@ async function asyncPutFetchRequest(resourceName, body) {
         .catch(function (err) {
             error = err;
         });
-    return {data: data, error: error};
+    return { data: data, error: error };
+}
+
+//send Delete request
+async function asyncDeleteRequest(resourceName) {
+
+    let error = '';
+    let okFlag = true;
+
+    let options = {
+        method: 'DELETE',
+        withCredentials: true,
+        headers: {
+            "Authorization": "Baisc " + btoa("JoBUNp1GoRUn4Dcin"),
+            "Content-Type": "application/json"
+        }
+    }
+
+    try{
+        let resp = await fetch(apiUrl + resourceName, options);
+        if (!resp.ok) {
+            error = resp.status + " error returned";
+        }
+    } catch(e) {
+        error = e;
+    }
+
+    return error;
 }
 
 
@@ -140,29 +174,29 @@ function encodeQueryData(data) {
 
 
 
-function loadjscssfile(filename, filetype){
-    if (filetype=="js"){ //if filename is a external JavaScript file
-        var fileref=document.createElement('script')
-        fileref.setAttribute("type","text/javascript")
+function loadjscssfile(filename, filetype) {
+    if (filetype == "js") { //if filename is a external JavaScript file
+        var fileref = document.createElement('script')
+        fileref.setAttribute("type", "text/javascript")
         fileref.setAttribute("src", filename)
     }
-    else if (filetype=="css"){ //if filename is an external CSS file
-        var fileref=document.createElement("link")
+    else if (filetype == "css") { //if filename is an external CSS file
+        var fileref = document.createElement("link")
         fileref.setAttribute("rel", "stylesheet")
         fileref.setAttribute("type", "text/css")
         fileref.setAttribute("href", filename)
     }
-    if (typeof fileref!="undefined")
+    if (typeof fileref != "undefined")
         document.getElementsByTagName("head")[0].appendChild(fileref)
 }
 
-function removejscssfile(filename, filetype){
-    var targetelement=(filetype=="js")? "script" : (filetype=="css")? "link" : "none" //determine element type to create nodelist from
-    var targetattr=(filetype=="js")? "src" : (filetype=="css")? "href" : "none" //determine corresponding attribute to test for
-    var allsuspects=document.getElementsByTagName(targetelement)
-    for (var i=allsuspects.length; i>=0; i--){ //search backwards within nodelist for matching elements to remove
-    if (allsuspects[i] && allsuspects[i].getAttribute(targetattr)!=null && allsuspects[i].getAttribute(targetattr).indexOf(filename)!=-1)
-        allsuspects[i].parentNode.removeChild(allsuspects[i]) //remove element by calling parentNode.removeChild()
+function removejscssfile(filename, filetype) {
+    var targetelement = (filetype == "js") ? "script" : (filetype == "css") ? "link" : "none" //determine element type to create nodelist from
+    var targetattr = (filetype == "js") ? "src" : (filetype == "css") ? "href" : "none" //determine corresponding attribute to test for
+    var allsuspects = document.getElementsByTagName(targetelement)
+    for (var i = allsuspects.length; i >= 0; i--) { //search backwards within nodelist for matching elements to remove
+        if (allsuspects[i] && allsuspects[i].getAttribute(targetattr) != null && allsuspects[i].getAttribute(targetattr).indexOf(filename) != -1)
+            allsuspects[i].parentNode.removeChild(allsuspects[i]) //remove element by calling parentNode.removeChild()
     }
 }
 
@@ -179,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let elems = document.querySelectorAll('.sidenav');
     let instances = M.Sidenav.init(elems, { edge: "left" });
 
-    
+
 });
 
 
