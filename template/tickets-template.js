@@ -1,4 +1,4 @@
-var loadTickets = async () => {
+var tickets = async () => {
     let resourceName = "tickets";
     let statusTexts = { 2: 'Open', 3: 'Pending', 4: 'Resolved', 5: 'Closed'};
     let priorityTexts = {1: 'Low', 2: 'Medium', 3: 'High', 4: 'Urgent'};
@@ -11,7 +11,13 @@ var loadTickets = async () => {
     let tickets = await asyncGetFetchRequest(resourceName, queryParams);
     let html = ''; 
     html = `<div id="tickets-list">
-                <div class="container">`;
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12">
+                            <h4>Tickets(${tickets.length})</h4>
+                        </div>
+                    </div>
+                    <div class="row">`;
 
     html = tickets.reduce((accum, ticket) => {
         return accum + `<div class="col s12">
@@ -19,7 +25,9 @@ var loadTickets = async () => {
                                 <div class="card-stacked">
                                     <div class="card-content grey lighten-4">
                                         <span class="card-title grey-text text-darken-4">
-                                            ${ticket.subject}
+                                            <span class="ticket-link" onclick="routeToLink('/tickets/${ticket.id}'); return false;">
+                                                #${ticket.id} ${ticket.subject}
+                                            </span>
                                             <i class="material-icons dropdown-trigger right" data-target="card-options-${ticket.id}" id="more">more_vert</i>
                                         </span>
                                         
@@ -55,6 +63,7 @@ var loadTickets = async () => {
     }, html);
 
     html += `</div>
+            </div>
                 <!-- MODAL -->
                 <div id="ticket-delete" class="modal">
                     <div class="modal-content">

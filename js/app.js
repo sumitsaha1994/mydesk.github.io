@@ -6,10 +6,10 @@ var currentPage = '';
 //---------------------------------------------
 const router = [
     { path: '/', name: '', redirectTo: '/dashboard' },
-    { path: '/dashboard', name: 'loadDashboard' },
-    { path: '/tickets', name: 'loadTickets' },
-    { path: '/tickets/:ticketId', name: 'ticket-details' },
-    { path: '/createticket', name: 'loadCreateTicket' }
+    { path: '/dashboard', name: 'dashboard' },
+    { path: '/tickets', name: 'tickets' },
+    { path: '/tickets/:ticketId', name: 'ticketdetails' },
+    { path: '/createticket', name: 'createticket' }
 ];
 
 
@@ -25,22 +25,42 @@ window.addEventListener('popstate', function (event) {
 
 //handle routing and loaing html from templates
 async function routeToLink(route, isPushState = true) {
-    removejscssfile("js" + currentPage + ".js", "js");
-    removejscssfile("css" + currentPage + ".css", "css");
+
+    let path = '';
+    let pathParamete = '';
+    let templateName;
+
+    removejscssfile("js/" + currentPage + ".js", "js");
+    removejscssfile("css/" + currentPage + ".css", "css");
+
     //get the template name from matching route
-    let routerObj = router.filter(r => r.path == route)[0];
-    let templateName = routerObj.name;
+    for (let r of router) {
+        if (r.path == route) {
+            path = route;
+            templateName = r.name;
+            break;
+        }
+        
+        let r_index = r.path.lastIndexOf('/');
+        let route_index = route.lastIndexOf('/');
+        if (r_index != 0 && route_index != 0 && r.path.slice(0, r_index) == route.slice(0, route_index)) {
+            path = route.slice(0, route_index);
+            pathParamete = route.slice(route_index + 1);
+            templateName = r.name;
+            break;
+        }
+    }
 
     //retrieve the template html
-    let templateHtml = await eval(templateName + '()');
+    let templateHtml = await eval(templateName + '(' + pathParamete + ')');
 
     //update the main container with the html data
     document.querySelector("main").innerHTML = templateHtml;
 
     //load js file
-    currentPage = route;
-    loadjscssfile("js" + route + ".js", "js");
-    loadjscssfile("css" + route + ".css", "css");
+    currentPage = templateName;
+    loadjscssfile("js/" + templateName + ".js", "js");
+    loadjscssfile("css/" + templateName + ".css", "css");
 
     //update history push state
     if (isPushState) {
@@ -151,12 +171,12 @@ async function asyncDeleteRequest(resourceName) {
         }
     }
 
-    try{
+    try {
         let resp = await fetch(apiUrl + resourceName, options);
         if (!resp.ok) {
             error = resp.status + " error returned";
         }
-    } catch(e) {
+    } catch (e) {
         error = e;
     }
 

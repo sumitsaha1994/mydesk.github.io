@@ -2,6 +2,10 @@
     let elemsGropdown = document.querySelectorAll('.dropdown-trigger');
     let instancesDropdown = M.Dropdown.init(elemsGropdown);
 
+    //delete existing tooltips
+    document.body.querySelectorAll(".material-tooltip").forEach(ele => {
+        document.body.removeChild(ele);
+    });
     let elemsTooltip = document.querySelectorAll('.tooltipped');
     let instancesTooltip = M.Tooltip.init(elemsTooltip);
 

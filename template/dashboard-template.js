@@ -1,4 +1,4 @@
-var loadDashboard = () => {
+var dashboard = () => {
     return `<div class="container center-align mt5">
                 <a href="" 
                     id="tickets" 
