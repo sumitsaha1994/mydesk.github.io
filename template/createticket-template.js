@@ -21,7 +21,7 @@ var createticket = () => {
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <i class="material-icons prefix">subject</i>
-                                            <input id="subject" type="text" name="subject" class="validate">
+                                            <input id="subject" type="text" name="subject" class="validate" required>
                                             <label for="subject">Subject</label>
                                         </div>
                                     </div>
@@ -29,7 +29,7 @@ var createticket = () => {
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <i class="material-icons prefix">show_chart</i>
-                                            <select name="status">
+                                            <select name="status" required>
                                                 <option value="" disabled selected>Status</option>
                                                 <option value="2">Open</option>
                                                 <option value="3">Pending</option>
@@ -42,7 +42,7 @@ var createticket = () => {
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <i class="material-icons prefix">priority_high</i>
-                                            <select name="priority">
+                                            <select name="priority" required>
                                                 <option value="" disabled selected>Priority</option>
                                                 <option value="1">Low</option>
                                                 <option value="2">Medium</option>
@@ -55,7 +55,7 @@ var createticket = () => {
                                     <div class="row">
                                         <div class="input-field col s12">
                                             <i class="material-icons prefix">description</i>
-                                            <textarea id="description" class="materialize-textarea" name="description"></textarea>
+                                            <textarea id="description" class="materialize-textarea" name="description" required></textarea>
                                             <label for="description">Description</label>
                                         </div>
                                     </div>
