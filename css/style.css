@@ -1,18 +1,10 @@
-header, main, footer {
-    padding-left: 300px;
-  }
-
-  @media only screen and (max-width : 992px) {
-    header, main, footer {
-      padding-left: 0;
-    }
-  }
-.navbar-fixed{
-    z-index: 9999;
+*, img{
+  padding:0px;
+  margin: 0px;
 }
 
-.ml5 {
-    left: 5%;
+.ml2 {
+    left: 2%;
 }
 
 .mt5{

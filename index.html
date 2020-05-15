@@ -8,8 +8,11 @@
     <!-- <base href="https://sumitsaha1994.github.io/mydesk.github.io/"> -->
     <base href="https://sumitsaha1994.github.io/">
     <!-- <base href="/"> -->
+
+    <link rel="icon" href="/images/fav.png" type="image/png" sizes="16x16">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="template/tickets-template.js"></script>
     <script src="template/dashboard-template.js"></script>
@@ -18,7 +21,7 @@
     <script src="template/updateticket-template.js"></script>
     <title>MyDesk</title>
     <style>
-        
+
     </style>
 </head>
 
@@ -26,30 +29,74 @@
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper indigo">
-                <a href="#!" class="brand-logo ml5">MyDesk</a>
-                <a href="#" data-target="mobile-demo" class="show-on-large sidenav-trigger sidenav-close"><i
+                <a href="/" class="brand-logo ml2">MyDesk</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger sidenav-close"><i
                         class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">Javascript</a></li>
-                    <li><a href="mobile.html">Mobile</a></li>
+                    <li title="Github repo">
+                        <a href="">
+                            <i style="font-size: 25px;" class="fa fa-github" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li title="Freshdesk Developers">
+                        <a href="https://developers.freshdesk.com/api/">
+                            <i class="valign-wrapper">
+                                <img src="/images/touch-icon-iphone.png" alt="" height="26" width="26"
+                                    style="margin-bottom:5px;">
+                            </i>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </nav>
     </div>
 
-    <ul class="sidenav sidenav-fixed" id="mobile-demo">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li>
-        <li><a class="sidenav-close" href="#!">Clicking this will close Sidenav</a></li>
+    <ul class="sidenav" id="mobile-demo">
+        <li>
+            <div class="user-view" style="text-align: center; padding: 5px">
+                <div class="background blue darken-2">
+                </div>
+
+                <a href="/"><span class="white-text">
+                        <h4>MyDesk</h4>
+                    </span></a>
+
+            </div>
+        </li>
+        <li>
+            <a href='' onclick="routeToLink('/tickets'); return false;">
+                <i class="material-icons left">view_list</i>View All Tickets
+            </a>
+        </li>
+
+        <li>
+            <a href="" onclick="routeToLink('/createticket'); return false;">
+                <i class="material-icons left">create</i>Create A new ticket
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <div style="display: flex;">
+
+                    <img src="/images/touch-icon-iphone.png" alt="" height="26" width="26"
+                        style="margin-top:10px; margin-right:10px" />
+
+                    Visit Freshdesk developer
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <i style="font-size: 25px;" class="fa fa-github" aria-hidden="true"></i>Visit Github repo
+            </a>
+        </li>
+
     </ul>
-    <!-- <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
-    
+
+    <!-- dynmic DOM content goes here -->
     <main>
-               
+
     </main>
 
 

@@ -239,7 +239,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let elems = document.querySelectorAll('.sidenav');
     let instances = M.Sidenav.init(elems, { edge: "left" });
 
+    let sidenav_instance = M.Sidenav.getInstance(document.getElementById("mobile-demo"));
 
+    document.querySelectorAll("#mobile-demo li").forEach(ele => {
+        ele.addEventListener("click", function() {
+            sidenav_instance.close();
+        });
+    });
 });
 
 
