@@ -20,7 +20,7 @@ window.addEventListener("load", (event) => {
     routeToLink('/dashboard');
     if (ref) {
         console.log(ref.split(/\.[a-z]+\//));
-        routeToLink(ref.split(/\.[a-z]+\//)[1]);    
+        routeToLink('/' + ref.split(/\.[a-z]+\//)[1]);    
     }
 });
 
