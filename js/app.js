@@ -16,8 +16,11 @@ const router = [
 
 //handle initial page routing **** need to be refactored **** DO NOT FORGET ************##################
 window.addEventListener("load", (event) => {
-    console.log(document.referrer);
-    routeToLink('/dashboard')
+    let ref = document.referrer;
+    routeToLink('/dashboard');
+    if (ref) {
+        routeToLink(ref.split(/\.[a-z]+\//));    
+    }
 });
 
 //handle navigation while clicking browser back and forward button
@@ -45,7 +48,7 @@ async function routeToLink(route, isPushState = true) {
         
         let r_index = r.path.lastIndexOf('/');
         let route_index = route.lastIndexOf('/');
-        if (r_index != 0 && route_index != 0 && r.path.slice(0, r_index) == route.slice(0, route_index)) {
+        if (r_index != 0 && route_index != 0 && (r.path.slice(0, r_index) == route.slice(0, route_index))) {
             path = route.slice(0, route_index);
             pathParamete = route.slice(route_index + 1);
             templateName = r.name;
