@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- <base href="https://sumitsaha1994.github.io/mydesk.github.io/"> -->
-    <base href="https://sumitsaha1994.github.io/">
-    <!-- <base href="/"> -->
+    <!-- <base href="https://sumitsaha1994.github.io/"> -->
+    <base href="/">
 
     <link rel="icon" href="/images/fav.png" type="image/png" sizes="16x16">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -29,7 +29,7 @@
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper indigo">
-                <a href="/" class="brand-logo ml2">MyDesk</a>
+                <a href="" class="brand-logo ml2" onclick="routeToLink('/dashboard'); return false">MyDesk</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger sidenav-close"><i
                         class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
@@ -58,7 +58,7 @@
                 <div class="background blue darken-2">
                 </div>
 
-                <a href="/"><span class="white-text">
+                <a href="" onclick="routeToLink('/dashboard'); return false"><span class="white-text">
                         <h4>MyDesk</h4>
                     </span></a>
 
