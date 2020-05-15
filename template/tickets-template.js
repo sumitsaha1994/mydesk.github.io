@@ -77,6 +77,11 @@ var tickets = async () => {
                         <button class="modal-close waves-effect waves-green btn-flat">Cancel</a>
                     </div>
                 </div>
+
+                <a class="add-button btn-floating btn-large waves-effect waves-light pink" 
+                    onclick="routeToLink('/createticket'); return false;">
+                    <i class="material-icons">add</i>
+                </a>
         </div>`;
     return html;
 }

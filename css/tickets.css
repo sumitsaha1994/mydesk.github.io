@@ -10,3 +10,9 @@ span[class^="chip"] {
 .ticket-link:hover {
     text-decoration: underline;
 }
+
+.add-button{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
