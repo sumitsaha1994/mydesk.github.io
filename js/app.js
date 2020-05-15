@@ -9,7 +9,8 @@ const router = [
     { path: '/dashboard', name: 'dashboard' },
     { path: '/tickets', name: 'tickets' },
     { path: '/tickets/:ticketId', name: 'ticketdetails' },
-    { path: '/createticket', name: 'createticket' }
+    { path: '/createticket', name: 'createticket' },
+    { path: '/updateticket/:ticketId', name: 'updateticket'}
 ];
 
 

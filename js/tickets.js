@@ -13,17 +13,6 @@
     let deleteModals = document.querySelectorAll('.modal');
     let instances = M.Modal.init(deleteModals);
 
-    //add event listener to all the delete links
-    let delLinks = document.querySelectorAll("ul[id^='card-options-'] a[id^='d-ticket-']");
-
-    delLinks.forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault();
-            let ticketId = this.getAttribute("id").replace('d-ticket-', '');
-        }, false);
-    });
-
-
     //add event listener to all the update links
     let updateLinks = document.querySelectorAll("ul[id^='card-options-'] a[id^='u-ticket-']");
 
@@ -31,14 +20,7 @@
         link.addEventListener("click", async function (event) {
             event.preventDefault();
             let ticketId = this.getAttribute("id").replace('u-ticket-', '');
-            let res = await asyncPutFetchRequest('tickets/' + ticketId, JSON.stringify({ "priority": 1, "status": 4 }));
-            if (Object.keys(res).length === 0 && res.con.constructor === Object) {
-                console.log(JSON.stringify(res.error));
-            } else {
-                console.log(JSON.stringify(res.data));
-                routeToLink("/tickets");
-            }
-
+            routeToLink(`/updateticket/${ticketId}`)
         }, false);
     });
 

@@ -38,8 +38,6 @@
             M.Modal.getInstance(errorModal).open();
         }
         
-        console.log("abc")
-        
     }
 
 })();
