@@ -17,10 +17,12 @@ const router = [
 //handle initial page routing **** need to be refactored **** DO NOT FORGET ************##################
 window.addEventListener("load", (event) => {
     let ref = document.referrer;
-    routeToLink('/dashboard');
+    
     if (ref) {
         console.log(ref.split(/\.[a-z]+\//));
         routeToLink('/' + ref.split(/\.[a-z]+\//)[1]);    
+    } else {
+        routeToLink('/dashboard');
     }
 });
 
