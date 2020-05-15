@@ -28,7 +28,7 @@
 
     deleteLinks.forEach(link => {
         link.addEventListener("click", async function () {
-            //event.preventDefault();
+            event.preventDefault();
             
             let ticketId = this.getAttribute("id").replace('d-ticket-', '');
             let deleteModal = document.getElementById("ticket-delete");
