@@ -84,7 +84,6 @@ var createticket = () => {
                             <p>Success</p>
                         </div>
                         <div class="modal-footer">
-                            <button class="modal-close waves-effect waves-green btn-flat">Create one more</button>
                             <button class="modal-close waves-effect waves-green btn-flat">Ok</button>
                         </div>
                     </div>
