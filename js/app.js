@@ -16,6 +16,7 @@ const router = [
 
 //handle initial page routing **** need to be refactored **** DO NOT FORGET ************##################
 window.addEventListener("load", (event) => {
+    console.log(window.history.pushState);
     routeToLink('/dashboard')
 });
 
